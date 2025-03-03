@@ -27,7 +27,14 @@
 
 //Challenge #3
 
-const scoreDolphins = (96 + 108 + 89) / 3
-const scoreKoalas = (88 + 91 + 110) / 3
+// const scoreDolphins = (96 + 108 + 89) / 3
+// const scoreKoalas = (88 + 91 + 110) / 3
 
-console.log(scoreDolphins === scoreKoalas ? "Both win the trophy" : scoreDolphins > scoreKoalas ? "Dolphins win the trophy" : "Koalas win the trophy")
+// console.log(scoreDolphins === scoreKoalas ? "Both win the trophy" : scoreDolphins > scoreKoalas ? "Dolphins win the trophy" : "Koalas win the trophy")
+
+//Challenge #4
+const bill = 275;
+const tip = 50 <= bill && bill <= 300 ? bill * 0.15 : bill * 0.2
+
+
+console.log(`The bill was ${bill}, the tip was ${tip}, and the total value ${bill + tip}`)
