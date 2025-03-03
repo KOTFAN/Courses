@@ -14,14 +14,20 @@
 // console.log(markHigherBMI)
 
 ////Challenge #2
-const massMark = 78;
-const heightMark = 1.69;
-const massJohn = 92;
-const heightJohn = 1.95;
+// const massMark = 78;
+// const heightMark = 1.69;
+// const massJohn = 92;
+// const heightJohn = 1.95;
 
-const BMIMark = massMark / (heightMark * heightMark);
-const BMIJohn = massJohn / (heightJohn * heightJohn);
-console.log(BMIMark, BMIJohn);
+// const BMIMark = massMark / (heightMark * heightMark);
+// const BMIJohn = massJohn / (heightJohn * heightJohn);
+// console.log(BMIMark, BMIJohn);
 
-console.log(BMIMark > BMIJohn ? `Mark's BMI (${BMIMark}) is higher than John's (${BMIJohn})!` : `John's BMI (${BMIJohn}) is higher than Mark's (${BMIMark})!`)
+// console.log(BMIMark > BMIJohn ? `Mark's BMI (${BMIMark}) is higher than John's (${BMIJohn})!` : `John's BMI (${BMIJohn}) is higher than Mark's (${BMIMark})!`)
 
+//Challenge #3
+
+const scoreDolphins = (96 + 108 + 89) / 3
+const scoreKoalas = (88 + 91 + 110) / 3
+
+console.log(scoreDolphins === scoreKoalas ? "Both win the trophy" : scoreDolphins > scoreKoalas ? "Dolphins win the trophy" : "Koalas win the trophy")
