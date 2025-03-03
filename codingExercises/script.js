@@ -33,8 +33,26 @@
 // console.log(scoreDolphins === scoreKoalas ? "Both win the trophy" : scoreDolphins > scoreKoalas ? "Dolphins win the trophy" : "Koalas win the trophy")
 
 //Challenge #4
-const bill = 275;
-const tip = 50 <= bill && bill <= 300 ? bill * 0.15 : bill * 0.2
+// const bill = 275;
+// const tip = 50 <= bill && bill <= 300 ? bill * 0.15 : bill * 0.2
 
 
-console.log(`The bill was ${bill}, the tip was ${tip}, and the total value ${bill + tip}`)
+// console.log(`The bill was ${bill}, the tip was ${tip}, and the total value ${bill + tip}`)
+
+
+
+const calcAverage = (s1, s2, s3) => (s1 + s2 + s3) / 3
+
+const scoreDolphins = calcAverage(44, 23, 71)
+const scoreKoalas = calcAverage(65, 54, 49)
+
+const checkWinner = (avgDolphins, avgKoalas) => {
+   if (avgDolphins >= 2 * avgKoalas) {
+      console.log(`Dolphins win (${avgKoalas} vs. ${avgDolphins})`)
+   } else if (avgKoalas >= 2 * avgDolphins) {
+      console.log(`Koalas win (${avgKoalas} vs. ${avgDolphins})`)
+   }
+   else {
+      console.log("No team wins...")
+   }
+}
