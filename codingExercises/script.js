@@ -12,3 +12,5 @@ console.log(BMIMark, BMIJohn)
 let markHigherBMI = BMIMark > BMIJohn;
 
 console.log(markHigherBMI)
+
+
