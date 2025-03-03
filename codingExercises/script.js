@@ -41,18 +41,34 @@
 
 
 
-const calcAverage = (s1, s2, s3) => (s1 + s2 + s3) / 3
+//Challenge #5
+// const calcAverage = (s1, s2, s3) => (s1 + s2 + s3) / 3
 
-const scoreDolphins = calcAverage(44, 23, 71)
-const scoreKoalas = calcAverage(65, 54, 49)
+// const scoreDolphins = calcAverage(44, 23, 71)
+// const scoreKoalas = calcAverage(65, 54, 49)
 
-const checkWinner = (avgDolphins, avgKoalas) => {
-   if (avgDolphins >= 2 * avgKoalas) {
-      console.log(`Dolphins win (${avgKoalas} vs. ${avgDolphins})`)
-   } else if (avgKoalas >= 2 * avgDolphins) {
-      console.log(`Koalas win (${avgKoalas} vs. ${avgDolphins})`)
-   }
-   else {
-      console.log("No team wins...")
-   }
+// const checkWinner = (avgDolphins, avgKoalas) => {
+//    if (avgDolphins >= 2 * avgKoalas) {
+//       console.log(`Dolphins win (${avgKoalas} vs. ${avgDolphins})`)
+//    } else if (avgKoalas >= 2 * avgDolphins) {
+//       console.log(`Koalas win (${avgKoalas} vs. ${avgDolphins})`)
+//    }
+//    else {
+//       console.log("No team wins...")
+//    }
+// }
+
+
+
+//Challenge #6
+
+let bills = [125, 555, 44];
+
+const calcTip = (bill) => {
+   return 50 <= bill && bill <= 300 ? bill * 0.15 : bill * 0.2
 }
+const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])]
+console.log(tips)
+const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]]
+console.log(totals)
+console.log(bills)
