@@ -1,9 +1,13 @@
 'use strict';
+const getRandomValueBetwen = (min, max) => {
+   return Math.floor(Math.random() * (max - min) + min + 1)
+}
+
 
 
 //data 
-let idGameRuned = true;
-let secretNum = Math.floor(Math.random() * 20 + 1)
+let guessDiapazone = [-1000, 1000]
+let secretNum = getRandomValueBetwen(guessDiapazone[0], guessDiapazone[1])
 let score = 20;
 let highScore = 0;
 
@@ -17,12 +21,19 @@ const message = document.querySelector('.message');
 const body = document.querySelector('body');
 const pageScore = document.querySelector('.score');
 const pageHighScore = document.querySelector('.highscore');
+const guesFrom = document.querySelector('.diapFrom')
+const guesTo = document.querySelector('.diapTo')
 
 
+//some deafalt values
 guessInput.value = 0
+pageScore.textContent = score;
+guesFrom.textContent = guessDiapazone[0]
+guesTo.textContent = guessDiapazone[1]
 
-// console.log(secretNum)
 
+
+//game functional
 checkBtn.addEventListener('click', () => {
    let userGuess = Number(guessInput.value)
 
@@ -33,8 +44,10 @@ checkBtn.addEventListener('click', () => {
       return;
    }
 
+
    score--
-   if (userGuess > 20 || userGuess < 1) {
+
+   if (userGuess < guessDiapazone[0] || userGuess > guessDiapazone[1]) {
       message.textContent = "Not even close😂"
 
    }
@@ -56,21 +69,20 @@ checkBtn.addEventListener('click', () => {
          highScore = score;
          pageHighScore.textContent = highScore;
       }
-
       checkBtn.disabled = true;
    }
+
    pageScore.textContent = score;
 })
 
-
-
-console.log(againBtn)
+//play again functional
 againBtn.addEventListener('click', () => {
    score = 20;
    pageScore.textContent = score;
-   secretNum = Math.floor(Math.random() * 20 + 1)
+   secretNum = getRandomValueBetwen(guessDiapazone[0], guessDiapazone[1])
    checkBtn.disabled = false;
    body.style = 'background-color: #222'
    message.textContent = "Start guessing..."
    hiddenNum.textContent = '?'
+   guessInput.value = 0
 })
