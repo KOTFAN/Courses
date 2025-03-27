@@ -41,3 +41,32 @@ function sendRequest(cb) {
     cb('Request done');
 }
 sendRequest(log);
+var someValue = "123";
+var strLength = someValue.length;
+console.log(strLength);
+var kotfan = {
+    name: 'Kotfan',
+    age: 20,
+    role: 'admin'
+};
+var Olex = {
+    name: 'Olex',
+    bornAt: 1999,
+    takeBooks: ["Solo Levelitg 1st book", "ddd"],
+    isBaned: false,
+};
+var Vlad = {
+    name: 'Vlad',
+    bornAt: 1009,
+    takeBooks: ["Bible", "Codex Gigas"],
+    isBaned: true,
+};
+var Sasha = {
+    name: "Sasha",
+    bornAt: 2000,
+    takeBooks: [],
+    isOnline: true,
+    onlineBooks: [],
+    role: 'admin'
+};
+console.log(Sasha);

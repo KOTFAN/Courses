@@ -70,3 +70,100 @@ function sendRequest(cb: (m: string) => void) {
 
 
 sendRequest(log)
+
+
+
+let someValue: any = "123";
+let strLength: number = (someValue as string).length;
+console.log(strLength);
+
+
+
+type networkUser = {
+   name: string;
+   age: number;
+   role?: Role
+}
+
+const kotfan: networkUser = {
+   name: 'Kotfan',
+   age: 20,
+   role: 'admin'
+}
+
+
+interface LibreryUser {
+   name: string,
+   bornAt: number,
+   takeBooks: string[]
+}
+
+
+let Olex: LibreryUser = {
+   name: 'Olex',
+   bornAt: 1999,
+   takeBooks: ["Solo Levelitg 1st book", "ddd"],
+   isBaned: false,
+}
+
+
+interface LibreryUser {
+   name: string,
+   bornAt: number,
+   takeBooks: string[],
+   isBaned?: boolean,
+}
+
+
+let Vlad: LibreryUser = {
+   name: 'Vlad',
+   bornAt: 1009,
+   takeBooks: ["Bible", "Codex Gigas"],
+   isBaned: true,
+}
+
+
+
+interface LibreryInternetUser extends LibreryUser {
+   isOnline: boolean;
+   onlineBooks: string[];
+   role: Role;
+}
+
+
+let Sasha: LibreryInternetUser = {
+   name: "Sasha",
+   bornAt: 2000,
+   takeBooks: [],
+   isOnline: true,
+   onlineBooks: [],
+   role: 'admin'
+}
+
+
+
+console.log(Sasha)
+
+
+
+type Person = {
+   firstName: string;
+   lastName: string;
+};
+
+type Employee = Person & {
+   company: string;
+   employeeId: number;
+};
+
+
+
+
+let ALFRED: Employee = {
+   firstName: 'alfred',
+   lastName: 'jecson',
+   company: 'Leetcode',
+   employeeId: 9999
+}
+
+
