@@ -252,93 +252,148 @@ BONUS: Create an object called 'scorers' which contains the names of the players
 GOOD LUCK 😀
 */
 
-const game = {
-   team1: 'Bayern Munich',
-   team2: 'Borrussia Dortmund',
-   players: [
-      [
-         'Neuer',
-         'Pavard',
-         'Martinez',
-         'Alaba',
-         'Davies',
-         'Kimmich',
-         'Goretzka',
-         'Coman',
-         'Muller',
-         'Gnarby',
-         'Lewandowski',
-      ],
-      [
-         'Burki',
-         'Schulz',
-         'Hummels',
-         'Akanji',
-         'Hakimi',
-         'Weigl',
-         'Witsel',
-         'Hazard',
-         'Brandt',
-         'Sancho',
-         'Gotze',
-      ],
-   ],
-   score: '4:0',
-   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-   date: 'Nov 9th, 2037',
-   odds: {
-      team1: 1.33,
-      x: 3.25,
-      team2: 6.5,
-   },
-};
+// const game = {
+//    team1: 'Bayern Munich',
+//    team2: 'Borrussia Dortmund',
+//    players: [
+//       [
+//          'Neuer',
+//          'Pavard',
+//          'Martinez',
+//          'Alaba',
+//          'Davies',
+//          'Kimmich',
+//          'Goretzka',
+//          'Coman',
+//          'Muller',
+//          'Gnarby',
+//          'Lewandowski',
+//       ],
+//       [
+//          'Burki',
+//          'Schulz',
+//          'Hummels',
+//          'Akanji',
+//          'Hakimi',
+//          'Weigl',
+//          'Witsel',
+//          'Hazard',
+//          'Brandt',
+//          'Sancho',
+//          'Gotze',
+//       ],
+//    ],
+//    score: '4:0',
+//    scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+//    date: 'Nov 9th, 2037',
+//    odds: {
+//       team1: 1.33,
+//       x: 3.25,
+//       team2: 6.5,
+//    },
+// };
 
 
-function printGoals(...players) {
-   const goalsMade = players.length
+// function printGoals(...players) {
+//    const goalsMade = players.length
 
-   const PlayersGoalsNums = {}
-
-
-   let goal = 0
-   for (let player of players) {
-      console.log(`${++goal} goal was made my ${player}`)
-      if (PlayersGoalsNums[player]) {
-         ++PlayersGoalsNums[player]
-      } else {
-         PlayersGoalsNums[player] = 1
-      }
-   }
-
-   Object.freeze(PlayersGoalsNums)
-   // for (let PlayerGoalsNum of Object.entries(PlayersGoalsNums)) {
-   //    console.log(`Player ${PlayerGoalsNum[0]} made ${PlayerGoalsNum[1]} of ${goalsMade} in this game!`)
-   // }
-
-   return PlayersGoalsNums;
-
-}
-
-console.log("Average coef is " + (Object.values(game.odds).reduce((a, v) => a + Number(v), 0) / Object.values(game.odds).length).toFixed(2));
+//    const PlayersGoalsNums = {}
 
 
-const scorers = printGoals(...game.scored)
+//    let goal = 0
+//    for (let player of players) {
+//       console.log(`${++goal} goal was made my ${player}`)
+//       if (PlayersGoalsNums[player]) {
+//          ++PlayersGoalsNums[player]
+//       } else {
+//          PlayersGoalsNums[player] = 1
+//       }
+//    }
 
-const { team1, x: draw, team2 } = { ...game.odds }
+//    Object.freeze(PlayersGoalsNums)
+//    // for (let PlayerGoalsNum of Object.entries(PlayersGoalsNums)) {
+//    //    console.log(`Player ${PlayerGoalsNum[0]} made ${PlayerGoalsNum[1]} of ${goalsMade} in this game!`)
+//    // }
 
-const gameOdds = {
-   [game.team1]: team1,
-   'Draw': draw,
-   [game.team2]: team2,
-}
+//    return PlayersGoalsNums;
 
-for (let teamOdd of Object.entries(gameOdds)) {
-   console.log(`Odd on ${teamOdd[0]}: ${teamOdd[1]}`)
-}
+// }
+
+// console.log("Average coef is " + (Object.values(game.odds).reduce((a, v) => a + Number(v), 0) / Object.values(game.odds).length).toFixed(2));
+
+
+// const scorers = printGoals(...game.scored)
+
+// const { team1, x: draw, team2 } = { ...game.odds }
+
+// const gameOdds = {
+//    [game.team1]: team1,
+//    'Draw': draw,
+//    [game.team2]: team2,
+// }
+
+// for (let teamOdd of Object.entries(gameOdds)) {
+//    console.log(`Odd on ${teamOdd[0]}: ${teamOdd[1]}`)
+// }
 
 
 //Challenge #11
 
+/* 
+Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
+
+1. Create an array 'events' of the different game events that happened (no duplicates)
+2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+3. Print the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+4. Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
+      [FIRST HALF] 17: ⚽️ GOAL
+
+GOOD LUCK 😀
+*/
+
+const gameEvents = new Map([
+   [17, '⚽️ GOAL'],
+   [36, '🔁 Substitution'],
+   [47, '⚽️ GOAL'],
+   [61, '🔁 Substitution'],
+   [64, '🔶 Yellow card'],
+   [69, '🔴 Red card'],
+   [70, '🔁 Substitution'],
+   [72, '🔁 Substitution'],
+   [76, '⚽️ GOAL'],
+   [80, '⚽️ GOAL'],
+   [92, '🔶 Yellow card'],
+]);
+
+//1.
+const uniqueEvents = new Set()
+for (const event of gameEvents) {
+   uniqueEvents.add(event[1])
+}
+const events = [...uniqueEvents]
+console.log(events)
+//2
+gameEvents.delete(64)
+
+//3
+const eventCounts = {}
+
+for (const [time, event] of gameEvents) {
+
+   if (eventCounts[event]) {
+      eventCounts[event]++
+   } else {
+      eventCounts[event] = 1
+   }
+}
+
+for (const [event, count] of Object.entries(eventCounts)) {
 
 
+   console.log(`An ${event} happened, on average, every ${Math.floor(90 / count)} minutes`)
+}
+
+
+//4
+gameEvents.forEach((v, k) => console.log(`${k < 45 ? '[FIRST HALF]' : '[SECOND HALF]'} ${k}:${v}`))
 //Challenge #12
