@@ -1,3 +1,5 @@
+'use strict'
+
 //Challenge #1
 
 // let massMark = 78
@@ -118,7 +120,7 @@
 
 //Challenge #9
 
-/* 
+/*
 We're building a football betting app (soccer for my American friends 😅)!
 
 Suppose we get data from a web service about a certain game (below). In this challenge we're gonna work with the data. So here are your tasks:
@@ -136,6 +138,119 @@ TEST DATA FOR 6: Use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. Th
 GOOD LUCK 😀
 */
 
+
+// const game = {
+//    team1: 'Bayern Munich',
+//    team2: 'Borrussia Dortmund',
+//    players: [
+//       [
+//          'Neuer',
+//          'Pavard',
+//          'Martinez',
+//          'Alaba',
+//          'Davies',
+//          'Kimmich',
+//          'Goretzka',
+//          'Coman',
+//          'Muller',
+//          'Gnarby',
+//          'Lewandowski',
+//       ],
+//       [
+//          'Burki',
+//          'Schulz',
+//          'Hummels',
+//          'Akanji',
+//          'Hakimi',
+//          'Weigl',
+//          'Witsel',
+//          'Hazard',
+//          'Brandt',
+//          'Sancho',
+//          'Gotze',
+//       ],
+//    ],
+//    score: '4:0',
+//    scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+//    date: 'Nov 9th, 2037',
+//    odds: {
+//       team1: 1.33,
+//       x: 3.25,
+//       team2: 6.5,
+//    },
+// };
+
+
+// //is better
+// const [players1, players2] = game.players
+
+
+// const [gk1, ...fieldPlayers1] = players1
+// const [gk2, ...fieldPlayers2] = players2
+
+// const allPlayers = [...players1, ...players2]
+
+// const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic']
+// const players2Final = [...players2]
+
+// const [team1, draw, team2] = [...Object.values(game.odds)]
+
+
+// function printGoals() {
+//    const goalsMade = arguments.length
+
+//    const PlayersGoalsNums = {}
+
+//    for (let player of arguments) {
+//       if (PlayersGoalsNums[player]) {
+//          ++PlayersGoalsNums[player]
+//       } else {
+//          PlayersGoalsNums[player] = 1
+//       }
+//    }
+
+//    Object.freeze(PlayersGoalsNums)
+//    for (let PlayerGoalsNum of Object.entries(PlayersGoalsNums)) {
+//       console.log(`Player ${PlayerGoalsNum[0]} made ${PlayerGoalsNum[1]} of ${goalsMade} in this game!`)
+//    }
+
+// }
+
+// const coefs = {
+//    [team1]: [game.team1],
+//    [team2]: [game.team2],
+// }
+
+
+// console.log(`Team ${coefs[String(Math.min(...(Object.keys(coefs).map((s) => parseFloat(s)))))]} has the biggest chanses to win this game`)
+
+// printGoals()
+// console.log(players1, players2)
+
+
+//Challenge #10
+
+
+/*
+Let's continue with our football betting app!
+
+1. Loop over the game.scored array and print each player name to the console, along with the goal number (Example: "Goal 1: Lewandowski")
+2. Use a loop to calculate the average odd and log it to the console (We already studied how to calculate averages, you can go check if you don't remember)
+3. Print the 3 odds to the console, but in a nice formatted way, exaclty like this:
+      Odd of victory Bayern Munich: 1.33
+      Odd of draw: 3.25
+      Odd of victory Borrussia Dortmund: 6.5
+Get the team names directly from the game object, don't hardcode them (except for "draw"). HINT: Note how the odds and the game objects have the same property names 😉
+
+BONUS: Create an object called 'scorers' which contains the names of the players who scored as properties, and the number of goals as the value. In this game, it will look like this:
+      {
+        Gnarby: 1,
+        Hummels: 1,
+        Lewandowski: 2
+      }
+
+GOOD LUCK 😀
+*/
 
 const game = {
    team1: 'Bayern Munich',
@@ -179,27 +294,15 @@ const game = {
 };
 
 
-//is better
-const [players1, players2] = game.players
-
-
-const [gk1, ...fieldPlayers1] = players1
-const [gk2, ...fieldPlayers2] = players2
-
-const allPlayers = [...players1, ...players2]
-
-const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic']
-const players2Final = [...players2]
-
-const [team1, draw, team2] = [...Object.values(game.odds)]
-
-
-function printGoals() {
-   const goalsMade = arguments.length
+function printGoals(...players) {
+   const goalsMade = players.length
 
    const PlayersGoalsNums = {}
 
-   for (let player of arguments) {
+
+   let goal = 0
+   for (let player of players) {
+      console.log(`${++goal} goal was made my ${player}`)
       if (PlayersGoalsNums[player]) {
          ++PlayersGoalsNums[player]
       } else {
@@ -208,26 +311,30 @@ function printGoals() {
    }
 
    Object.freeze(PlayersGoalsNums)
-   for (let PlayerGoalsNum of Object.entries(PlayersGoalsNums)) {
-      console.log(`Player ${PlayerGoalsNum[0]} made ${PlayerGoalsNum[1]} of ${goalsMade} in this game!`)
-   }
+   // for (let PlayerGoalsNum of Object.entries(PlayersGoalsNums)) {
+   //    console.log(`Player ${PlayerGoalsNum[0]} made ${PlayerGoalsNum[1]} of ${goalsMade} in this game!`)
+   // }
+
+   return PlayersGoalsNums;
 
 }
 
-const coefs = {
-   [team1]: [game.team1],
-   [team2]: [game.team2],
+console.log("Average coef is " + (Object.values(game.odds).reduce((a, v) => a + Number(v), 0) / Object.values(game.odds).length).toFixed(2));
+
+
+const scorers = printGoals(...game.scored)
+
+const { team1, x: draw, team2 } = { ...game.odds }
+
+const gameOdds = {
+   [game.team1]: team1,
+   'Draw': draw,
+   [game.team2]: team2,
 }
 
-
-console.log(`Team ${coefs[String(Math.min(...(Object.keys(coefs).map((s) => parseFloat(s)))))]} has the biggest chanses to win this game`)
-
-printGoals()
-console.log(players1, players2)
-
-
-//Challenge #10
-
+for (let teamOdd of Object.entries(gameOdds)) {
+   console.log(`Odd on ${teamOdd[0]}: ${teamOdd[1]}`)
+}
 
 
 //Challenge #11
