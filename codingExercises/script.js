@@ -179,9 +179,9 @@ const game = {
 };
 
 
+//is better
+const [players1, players2] = game.players
 
-const players1 = [...game.players[0]]
-const players2 = [...game.players[1]]
 
 const [gk1, ...fieldPlayers1] = players1
 const [gk2, ...fieldPlayers2] = players2
@@ -222,7 +222,8 @@ const coefs = {
 
 console.log(`Team ${coefs[String(Math.min(...(Object.keys(coefs).map((s) => parseFloat(s)))))]} has the biggest chanses to win this game`)
 
-printGoals('Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels', 'Hummels')
+printGoals()
+console.log(players1, players2)
 
 
 //Challenge #10
