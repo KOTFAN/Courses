@@ -339,7 +339,7 @@ GOOD LUCK 😀
 
 //Challenge #11
 
-/* 
+/*
 Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
 
 1. Create an array 'events' of the different game events that happened (no duplicates)
@@ -351,49 +351,113 @@ Let's continue with our football betting app! This time, we have a map with a lo
 GOOD LUCK 😀
 */
 
-const gameEvents = new Map([
-   [17, '⚽️ GOAL'],
-   [36, '🔁 Substitution'],
-   [47, '⚽️ GOAL'],
-   [61, '🔁 Substitution'],
-   [64, '🔶 Yellow card'],
-   [69, '🔴 Red card'],
-   [70, '🔁 Substitution'],
-   [72, '🔁 Substitution'],
-   [76, '⚽️ GOAL'],
-   [80, '⚽️ GOAL'],
-   [92, '🔶 Yellow card'],
-]);
+// const gameEvents = new Map([
+//    [17, '⚽️ GOAL'],
+//    [36, '🔁 Substitution'],
+//    [47, '⚽️ GOAL'],
+//    [61, '🔁 Substitution'],
+//    [64, '🔶 Yellow card'],
+//    [69, '🔴 Red card'],
+//    [70, '🔁 Substitution'],
+//    [72, '🔁 Substitution'],
+//    [76, '⚽️ GOAL'],
+//    [80, '⚽️ GOAL'],
+//    [92, '🔶 Yellow card'],
+// ]);
 
-//1.
-const uniqueEvents = new Set()
-for (const event of gameEvents) {
-   uniqueEvents.add(event[1])
-}
-const events = [...uniqueEvents]
-console.log(events)
-//2
-gameEvents.delete(64)
+// //1.
+// const events = [...new Set(gameEvents.values())]
+// console.log(events)
+// //2
+// gameEvents.delete(64)
 
-//3
-const eventCounts = {}
+// //3
+// const eventCounts = {}
 
-for (const [time, event] of gameEvents) {
+// for (const [time, event] of gameEvents) {
 
-   if (eventCounts[event]) {
-      eventCounts[event]++
-   } else {
-      eventCounts[event] = 1
+//    if (eventCounts[event]) {
+//       eventCounts[event]++
+//    } else {
+//       eventCounts[event] = 1
+//    }
+// }
+
+// for (const [event, count] of Object.entries(eventCounts)) {
+
+
+//    console.log(`An ${event} happened, on average, every ${Math.floor(90 / count)} minutes`)
+// }
+
+
+// //4
+// gameEvents.forEach((v, k) => console.log(`${k < 45 ? '[FIRST HALF]' : '[SECOND HALF]'} ${k}:${v}`))
+
+
+
+// Challenge #12
+
+/*
+Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
+
+The input will come from a textarea inserted into the DOM (see code below), and conversion will happen when the button is pressed.
+
+THIS TEST DATA (pasted to textarea)
+underscore_case
+ first_name
+Some_Variable 
+  calculate_AGE
+delayed_departure
+
+SHOULD PRODUCE THIS OUTPUT (5 separate console.log outputs)
+underscoreCase      ✅
+firstName           ✅✅
+someVariable        ✅✅✅
+calculateAge        ✅✅✅✅
+delayedDeparture    ✅✅✅✅✅
+
+HINT 1: Remember which character defines a new line in the textarea 😉
+HINT 2: The solution only needs to work for a variable made out of 2 words, like a_b
+HINT 3: Start without worrying about the ✅. Tackle that only after you have the variable name conversion working 😉
+HINT 4: This challenge is difficult on purpose, so start watching the solution in case you're stuck. Then pause and continue!
+
+Afterwards, test with your own test data!
+
+GOOD LUCK 😀
+*/
+
+
+
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+const textarea = document.querySelector('textarea')
+
+
+
+document.querySelector('button').addEventListener('click', () => {
+   const inputData = textarea.value.split('\n')
+   const res = []
+
+
+   for (const line of inputData) {
+      const lineData = line.toLowerCase().trim().split('_')
+      console.log(lineData)
+      const resLineArr = [];
+      for (let i = 0; i < lineData.length; i++) {
+         lineData[i] = lineData[i].trim()
+         if (lineData[i] !== '') {
+            if (i === 0) {
+               resLineArr.push(lineData[i])
+            } else {
+               resLineArr.push(lineData[i][0].toUpperCase() + lineData[i].slice(1))
+            }
+
+         }
+
+      }
+      res.push(resLineArr.join(''))
    }
-}
+   console.log(res.join('\n'))
+})
 
-for (const [event, count] of Object.entries(eventCounts)) {
-
-
-   console.log(`An ${event} happened, on average, every ${Math.floor(90 / count)} minutes`)
-}
-
-
-//4
-gameEvents.forEach((v, k) => console.log(`${k < 45 ? '[FIRST HALF]' : '[SECOND HALF]'} ${k}:${v}`))
-//Challenge #12
