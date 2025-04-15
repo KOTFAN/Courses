@@ -1,4 +1,3 @@
-'use strict'
 
 //Challenge #1
 
@@ -495,45 +494,38 @@ BONUS TEST DATA 2: [1, 5, 3, 9, 6, 1]
 GOOD LUCK 😀
 */
 
-const poll = {
-   question: 'What is your favourite programming language?',
+// const poll = {
+//    question: 'What is your favourite programming language?',
 
-   options: [
-      '0: JavaScript',
-      '1: Python',
-      '2: Rust',
-      '3: C++'],
-   answers: new Array(4).fill(0),
-   registerNewAnswer() {
-      const favouriteProgramingLenguageNum = Number(window.prompt(this.question + '\n' + this.options.join('\n')))
-      if (this.options[favouriteProgramingLenguageNum]) {
-         this.answers[favouriteProgramingLenguageNum]++
-         this.displayResults('array')
-      }
-   },
+//    options: [
+//       '0: JavaScript',
+//       '1: Python',
+//       '2: Rust',
+//       '3: C++'],
+//    answers: new Array(4).fill(0),
+//    registerNewAnswer() {
+//       const favouriteProgramingLenguageNum = Number(window.prompt(this.question + '\n' + this.options.join('\n')))
+//       if (this.options[favouriteProgramingLenguageNum]) {
+//          this.answers[favouriteProgramingLenguageNum]++
+//          this.displayResults('array')
+//       }
+//    },
 
-   displayResults(type = 'array') {
-      if (type === 'array') {
-         console.log(this.answers)
-      }
-      if (type === 'string') {
-         console.log(`Poll results are ${this.answers.join(' ')}`)
-      }
-   }
-}
+//    displayResults(type = 'array') {
+//       if (type === 'array') {
+//          console.log(this.answers)
+//       }
+//       if (type === 'string') {
+//          console.log(`Poll results are ${this.answers.join(' ')}`)
+//       }
+//    }
+// }
 
-const answerThePool = document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll))
+// const answerThePool = document.querySelector('.poll').addEventListener('click', poll.registerNewAnswer.bind(poll))
 
-let someData = [1, 2, 3, , 4, 5, 6, 6, , 7, 7,]
+// let someData = [1, 2, 3, , 4, 5, 6, 6, , 7, 7,]
 
-poll.displayResults.call({ answers: someData }, 'string')
-
-
-
-
-
-
-
+// poll.displayResults.call({ answers: someData }, 'string')
 
 
 
@@ -541,7 +533,7 @@ poll.displayResults.call({ answers: someData }, 'string')
 
 
 
-/* 
+/*
 This is more of a thinking challenge than a coding challenge 🤓
 
 Take the IIFE below and at the end of the function, attach an event listener that changes the color of the selected h1 element ('header') to blue, each time the BODY element is clicked. Do NOT select the h1 element again!
@@ -549,4 +541,16 @@ Take the IIFE below and at the end of the function, attach an event listener tha
 And now explain to YOURSELF (or someone around you) WHY this worked! Take all the time you need. Think about WHEN exactly the callback function is executed, and what that means for the variables involved in this example.
 
 GOOD LUCK 😀
-*/
+// */
+// 'use strict';
+
+// (function () {
+//    const rgb = [0, 0, 0]
+//    const header = document.querySelector('h1')
+//    header.style.color = 'red';
+//    document.body.addEventListener('click', () => {
+//       header.style.color = `rgb(${rgb[0]++},${rgb[1]++},${rgb[2]++})`;
+//       console.log(rgb);
+//    })
+// })()
+
