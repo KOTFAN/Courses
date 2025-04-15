@@ -554,3 +554,23 @@ GOOD LUCK 😀
 //    })
 // })()
 
+
+
+//my bind
+const p1 = { name: 'Alex', age: 22, job: 'Frontend' }
+const p2 = { name: 'Leorio', age: 20, job: 'Medic' }
+
+function logP() {
+   console.log(`This is ${this.name}, i am ${this.age} years old, my job is ${this.job}`)
+}
+
+function bind(p, callback) {
+   return function () {
+      callback.apply(p)
+   }
+}
+
+let logAlex = bind(p1, logP)
+let logLeorio = bind(p2, logP)
+
+logLeorio()
