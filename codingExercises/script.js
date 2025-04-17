@@ -622,7 +622,7 @@ GOOD LUCK 😀
 
 // Coding Challenge #16
 
-/* 
+/*
 Let's go back to Julia and Kate's study about dogs. This time, they want to convert dog ages to human ages and calculate the average age of the dogs in their study.
 
 Create a function 'calcAverageHumanAge', which accepts an arrays of dog's ages ('ages'), and does the following things in order:
@@ -638,24 +638,43 @@ TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
 GOOD LUCK 😀
 */
 
-const calcAverageHumanAge = function (ages) {
-   let average = 0
-   const adultDogsAges = ages.map((age) => {
-      if (age <= 2) {
-         return 2 * age
-      } else {
-         return age * 4 + 16
-      }
-   }).filter((age) => age >= 18)
+// const calcAverageHumanAge = function (ages) {
+//    let average = 0
+//    const adultDogsAges = ages.map((age) => {
+//       if (age <= 2) {
+//          return 2 * age
+//       } else {
+//          return age * 4 + 16
+//       }
+//    }).filter((age) => age >= 18)
 
-   if (adultDogsAges.length) {
-      average = adultDogsAges.reduce((sum, age) => sum + age) / adultDogsAges.length
-   }
+//    if (adultDogsAges.length) {
+//       average = adultDogsAges.reduce((sum, age) => sum + age) / adultDogsAges.length
+//    }
 
 
-   return average
+//    return average
 
-}
+// }
+
+// calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3])
+// calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4])
+
+
+// Coding Challenge #17
+/* 
+Rewrite the 'calcAverageHumanAge' function from the previous challenge, but this time as an arrow function, and using chaining!
+
+TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
+TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
+
+GOOD LUCK 😀
+*/
+
+const calcAverageHumanAge = ages => ages.map(age => (age <= 2) ? (2 * age) : (age * 4 + 16))
+   .filter((age) => age >= 18)
+   .reduce((sum, age, i, arr) => sum + age / arr.length, 0)
+
 
 calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3])
 calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4])
