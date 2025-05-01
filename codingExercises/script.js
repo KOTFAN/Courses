@@ -769,7 +769,7 @@ TEST DATA:
 
 // Coding Challenge #19
 
-/* 
+/*
 Julia and Kate are still studying dogs. This time they are want to figure out if the dogs in their are eating too much or too little food.
 
 - Formula for calculating recommended food portion: recommendedFood = weight ** 0.75 * 28. (The result is in grams of food, and the weight needs to be in kg)
@@ -793,78 +793,118 @@ HINT 2: Being within a range 10% above and below the recommended portion means: 
 */
 
 
-const dogs = [
-   { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
-   { weight: 8, curFood: 200, owners: ['Matilda'] },
-   { weight: 13, curFood: 211, owners: ['Sarah', 'John', 'Leo'] },
-   { weight: 18, curFood: 244, owners: ['Joe'] },
-   { weight: 32, curFood: 340, owners: ['Michael'] },
-];
+// const dogs = [
+//    { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+//    { weight: 8, curFood: 200, owners: ['Matilda'] },
+//    { weight: 13, curFood: 211, owners: ['Sarah', 'John', 'Leo'] },
+//    { weight: 18, curFood: 244, owners: ['Joe'] },
+//    { weight: 32, curFood: 340, owners: ['Michael'] },
+// ];
 
-//1
-//can also be done by forEach
-for (const dog of dogs) {
-   dog.recFood = Math.floor(dog.weight ** 0.75 * 28)
+// //1
+// //can also be done by forEach
+// for (const dog of dogs) {
+//    dog.recFood = Math.floor(dog.weight ** 0.75 * 28)
+// }
+// console.log(dogs)
+// //2
+
+// //recFood*0.9 <= currFud >= recFood*1.1
+// const SarahDog = dogs.find(({ owners }) => owners.includes('Sarah'))
+// if (SarahDog.curFood >= SarahDog.recFood * 1.1) {
+//    console.log('Sarah Dog eats to much')
+// } else if (SarahDog.curFood <= SarahDog.recFood * 0.9) {
+//    console.log('Sarah Dog eats to little')
+// } else {
+//    console.log('Sarah Dog eats normal')
+// }
+// console.log(SarahDog)
+
+// //3
+// const groupedDogs = Object.groupBy(dogs, ({ curFood, recFood }) => {
+//    if (curFood >= recFood * 1.1) {
+//       return 'tooMuchFood'
+//    } if (curFood <= recFood * 0.9) {
+//       return 'tooLittleFood'
+//    }
+//    return 'normal'
+// });
+
+// const ownersTooMuch = [...new Set(groupedDogs.tooMuchFood.flatMap(({ owners }) => owners))]
+// const ownersTooLittle = [...new Set(groupedDogs.tooLittleFood.flatMap(({ owners }) => owners))]
+// console.log(ownersTooMuch, ownersTooLittle)
+
+// //4
+// console.log(`${ownersTooMuch.join(' and ')}'s dogs eats too much!`)
+// console.log(`${ownersTooLittle.join(' and ')}'s dogs eats too little!`)
+
+// //5
+// const isAnyDogEatsExactlyRec = dogs.some(({ recFood, curFood }) => recFood === curFood)
+// console.log(isAnyDogEatsExactlyRec)
+
+// //6
+// const isAllDogEatsAnought = dogs.every(({ recFood, curFood }) => curFood >= recFood * 0.9 && curFood <= recFood * 1.1)
+// console.log(isAllDogEatsAnought)
+
+// //7
+// const normalAmoungOfFoodDogs = groupedDogs.normal
+// console.log(normalAmoungOfFoodDogs)
+
+// //8
+// const groupOfDogsByFoodAmoung = Object.groupBy(dogs, ({ curFood, recFood }) => {
+//    if (curFood >= recFood * 1.1) return 'too-much'
+//    if (curFood <= recFood * 0.9) return 'too-little'
+//    if (curFood === recFood) return 'exact'
+// });
+// console.log(groupOfDogsByFoodAmoung)
+
+// //9
+// const groupOfDogsOwnersAmoung = Object.groupBy(dogs, ({ owners }) => {
+//    return owners.length
+// });
+// console.log(groupOfDogsOwnersAmoung)
+
+// //10
+// const sortedDogs = dogs.toSorted((a, b) => a.recFood - b.recFood)
+// console.log(dogs)
+// console.log(sortedDogs)
+
+
+// Coding Challenge #20
+
+/* 
+1. Use a constructor function to implement a Car. A car has a make and a speed property. The speed property is the current speed of the car in km/h;
+2. Implement an 'accelerate' method that will increase the car's speed by 10, and log the new speed to the console;
+3. Implement a 'brake' method that will decrease the car's speed by 5, and log the new speed to the console;
+4. Create 2 car objects and experiment with calling 'accelerate' and 'brake' multiple times on each of them.
+
+DATA CAR 1: 'BMW' going at 120 km/h
+DATA CAR 2: 'Mercedes' going at 95 km/h
+
+GOOD LUCK 😀
+*/
+
+const Car = function (make, speed) {
+   this.make = make;
+   this.speed = speed;
 }
-console.log(dogs)
-//2
 
-//recFood*0.9 <= currFud >= recFood*1.1
-const SarahDog = dogs.find(({ owners }) => owners.includes('Sarah'))
-if (SarahDog.curFood >= SarahDog.recFood * 1.1) {
-   console.log('Sarah Dog eats to much')
-} else if (SarahDog.curFood <= SarahDog.recFood * 0.9) {
-   console.log('Sarah Dog eats to little')
-} else {
-   console.log('Sarah Dog eats normal')
+Car.prototype.accelerate = function () {
+   this.speed += 10
+   console.log(this.speed)
 }
-console.log(SarahDog)
 
-//3
-const groupedDogs = Object.groupBy(dogs, ({ curFood, recFood }) => {
-   if (curFood >= recFood * 1.1) {
-      return 'tooMuchFood'
-   } if (curFood <= recFood * 0.9) {
-      return 'tooLittleFood'
-   }
-   return 'normal'
-});
+Car.prototype.brake = function () {
+   this.speed -= 5
+   console.log(this.speed)
+}
 
-const ownersTooMuch = [...new Set(groupedDogs.tooMuchFood.flatMap(({ owners }) => owners))]
-const ownersTooLittle = [...new Set(groupedDogs.tooLittleFood.flatMap(({ owners }) => owners))]
-console.log(ownersTooMuch, ownersTooLittle)
 
-//4
-console.log(`${ownersTooMuch.join(' and ')}'s dogs eats too much!`)
-console.log(`${ownersTooLittle.join(' and ')}'s dogs eats too little!`)
+const BMW = new Car('BMW', 120)
+const Mercedes = new Car('Mercedes', 95)
 
-//5
-const isAnyDogEatsExactlyRec = dogs.some(({ recFood, curFood }) => recFood === curFood)
-console.log(isAnyDogEatsExactlyRec)
+BMW.accelerate()
+BMW.brake()
 
-//6
-const isAllDogEatsAnought = dogs.every(({ recFood, curFood }) => curFood >= recFood * 0.9 && curFood <= recFood * 1.1)
-console.log(isAllDogEatsAnought)
-
-//7
-const normalAmoungOfFoodDogs = groupedDogs.normal
-console.log(normalAmoungOfFoodDogs)
-
-//8
-const groupOfDogsByFoodAmoung = Object.groupBy(dogs, ({ curFood, recFood }) => {
-   if (curFood >= recFood * 1.1) return 'too-much'
-   if (curFood <= recFood * 0.9) return 'too-little'
-   if (curFood === recFood) return 'exact'
-});
-console.log(groupOfDogsByFoodAmoung)
-
-//9
-const groupOfDogsOwnersAmoung = Object.groupBy(dogs, ({ owners }) => {
-   return owners.length
-});
-console.log(groupOfDogsOwnersAmoung)
-
-//10
-const sortedDogs = dogs.toSorted((a, b) => a.recFood - b.recFood)
-console.log(dogs)
-console.log(sortedDogs)
+Mercedes.brake()
+Mercedes.accelerate()
