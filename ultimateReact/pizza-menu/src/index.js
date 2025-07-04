@@ -51,11 +51,9 @@ const pizzaData = [
 function App() {
   return (
     <>
-      <h1>Mamma Reactia !!!</h1>
-      <p>Best pizzarella in all internet</p>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <Header />
+      <Menu />
+      <Footer />
     </>
   );
 }
@@ -68,6 +66,33 @@ function Pizza() {
       <img src="pizzas/focaccia.jpg" alt="focaccia" />
     </div>
   );
+}
+
+function Header() {
+  return (
+    <div>
+      <h1>Mamma Reactia !!!</h1>
+      <Slogan />
+    </div>
+  );
+}
+
+function Slogan() {
+  return React.createElement("p", null, "Best pizzarella in all internet");
+}
+
+function Menu() {
+  return (
+    <div>
+      <Pizza />
+      <Pizza />
+      <Pizza />
+    </div>
+  );
+}
+
+function Footer() {
+  return <div>We are open {new Date().toLocaleDateString}</div>;
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
