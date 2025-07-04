@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "./index.css";
 
 //data from server
 const pizzaData = [
@@ -50,18 +51,18 @@ const pizzaData = [
 //main component
 function App() {
   return (
-    <>
+    <div className="container">
       <Header />
       <Menu />
       <Footer />
-    </>
+    </div>
   );
 }
 
 function Pizza() {
   return (
     <div>
-      <h2>Focaccia</h2>
+      <h3>Focaccia</h3>
       <p>Bread with italian olive oil and rosemary</p>
       <img src="pizzas/focaccia.jpg" alt="focaccia" />
     </div>
@@ -70,24 +71,29 @@ function Pizza() {
 
 function Header() {
   return (
-    <div>
-      <h1>Mamma Reactia !!!</h1>
+    <header className="header">
+      <h1>Mamma Reactia 🍕</h1>
       <Slogan />
-    </div>
+    </header>
   );
 }
 
 function Slogan() {
-  return React.createElement("p", null, "Best pizzarella in all internet");
+  return React.createElement(
+    "p",
+    { className: "slogan" },
+    "Best pizzarella in all internet"
+  );
 }
 
 function Menu() {
   return (
-    <div>
+    <main className="menu">
+      <h2>Our menu</h2>
       <Pizza />
       <Pizza />
       <Pizza />
-    </div>
+    </main>
   );
 }
 
