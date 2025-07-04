@@ -92,7 +92,13 @@ function Menu() {
 }
 
 function Footer() {
-  return <div>We are open {new Date().toLocaleDateString}</div>;
+  const hour = new Date().getHours();
+  const openTime = 8;
+  const closeTime = 22;
+  const isOpen = openTime <= hour && hour <= closeTime;
+  console.log(isOpen);
+
+  return <div>{isOpen ? "We are open" : "we are closed"}</div>;
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
