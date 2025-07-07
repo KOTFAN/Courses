@@ -83,36 +83,30 @@ function Menu() {
       <h2>Our menu</h2>
       {pizzasCount > 0 && (
         <ul className="pizzas">
-          {pizzaData.map(({ name, ingredients, price, soldOut, photoName }) => {
-            if (!soldOut) {
-              //show only not soldout elements
-              return (
-                <Pizza
-                  name={name}
-                  ingredients={ingredients}
-                  img={photoName}
-                  price={price}
-                  key={name}
-                />
-              );
-            } else {
-              return null;
-            }
-          })}
+          {pizzaData.map(({ name, ingredients, price, soldOut, photoName }) => (
+            <Pizza
+              name={name}
+              ingredients={ingredients}
+              img={photoName}
+              price={price}
+              key={name}
+              soldOut={soldOut}
+            />
+          ))}
         </ul>
       )}
     </main>
   );
 }
 
-function Pizza({ name, ingredients, img, price }) {
+function Pizza({ name, ingredients, img, price, soldOut }) {
   return (
-    <li className="pizza">
+    <li className={`pizza ${soldOut ? "sold-out" : ""}`}>
       <img src={img} alt={name} />
       <div>
         <h3>{name}</h3>
         <p>{ingredients}</p>
-        <span>{price}</span>
+        <span>{soldOut ? "SOLD OUT" : price}</span>
       </div>
     </li>
   );
