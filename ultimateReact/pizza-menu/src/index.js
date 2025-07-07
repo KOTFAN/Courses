@@ -83,15 +83,22 @@ function Menu() {
       <h2>Our menu</h2>
       {pizzasCount > 0 && (
         <ul className="pizzas">
-          {pizzaData.map(({ name, ingredients, price, soldOut, photoName }) => (
-            <Pizza
-              name={name}
-              ingredients={ingredients}
-              img={photoName}
-              price={price}
-              key={name}
-            />
-          ))}
+          {pizzaData.map(({ name, ingredients, price, soldOut, photoName }) => {
+            if (!soldOut) {
+              //show only not soldout elements
+              return (
+                <Pizza
+                  name={name}
+                  ingredients={ingredients}
+                  img={photoName}
+                  price={price}
+                  key={name}
+                />
+              );
+            } else {
+              return null;
+            }
+          })}
         </ul>
       )}
     </main>
