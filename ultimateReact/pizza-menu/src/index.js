@@ -80,7 +80,7 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our menu</h2>
-      <div>
+      <ul className="pizzas">
         {pizzaData.map(({ name, ingredients, price, soldOut, photoName }) => (
           <Pizza
             name={name}
@@ -90,21 +90,21 @@ function Menu() {
             key={name}
           />
         ))}
-      </div>
+      </ul>
     </main>
   );
 }
 
 function Pizza({ name, ingredients, img, price }) {
   return (
-    <div className="pizza">
+    <li className="pizza">
       <img src={img} alt={name} />
       <div>
         <h3>{name}</h3>
         <p>{ingredients}</p>
         <span>{price}</span>
       </div>
-    </div>
+    </li>
   );
 }
 
@@ -115,7 +115,18 @@ function Footer() {
   const isOpen = openTime <= hour && hour <= closeTime;
   console.log(isOpen);
 
-  return <div>{isOpen ? "We are open" : "we are closed"}</div>;
+  return (
+    <footer>
+      {isOpen ? (
+        <div className="order">
+          <p>We are open, you can order online, or visit as in real life</p>
+          <button className="btn">Order</button>
+        </div>
+      ) : (
+        <p>We are closed, but we will open in {openTime}</p>
+      )}
+    </footer>
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
