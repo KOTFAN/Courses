@@ -77,20 +77,23 @@ function Slogan() {
 }
 
 function Menu() {
+  const pizzasCount = pizzaData.length;
   return (
     <main className="menu">
       <h2>Our menu</h2>
-      <ul className="pizzas">
-        {pizzaData.map(({ name, ingredients, price, soldOut, photoName }) => (
-          <Pizza
-            name={name}
-            ingredients={ingredients}
-            img={photoName}
-            price={price}
-            key={name}
-          />
-        ))}
-      </ul>
+      {pizzasCount > 0 && (
+        <ul className="pizzas">
+          {pizzaData.map(({ name, ingredients, price, soldOut, photoName }) => (
+            <Pizza
+              name={name}
+              ingredients={ingredients}
+              img={photoName}
+              price={price}
+              key={name}
+            />
+          ))}
+        </ul>
+      )}
     </main>
   );
 }
