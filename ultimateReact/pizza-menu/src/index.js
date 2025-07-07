@@ -87,6 +87,7 @@ function Menu() {
             ingredients={ingredients}
             img={photoName}
             price={price}
+            key={name}
           />
         ))}
       </div>
