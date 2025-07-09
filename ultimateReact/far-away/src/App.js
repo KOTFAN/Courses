@@ -26,7 +26,10 @@ function App() {
   }
 
   function handleClearList() {
-    setItems([]);
+    const shoudDelate = window.confirm(
+      "Are you realy whona delate all items in list?"
+    );
+    if (shoudDelate) setItems([]);
   }
   return (
     <div className="app">
