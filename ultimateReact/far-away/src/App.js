@@ -29,6 +29,12 @@ function Form() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    const item = { description, quantity, pasked: false };
+    console.log(item);
+
+    setDescription("");
+    setQuantity(1);
   }
 
   return (
