@@ -24,6 +24,10 @@ function App() {
       )
     );
   }
+
+  function handleClearList() {
+    setItems([]);
+  }
   return (
     <div className="app">
       <Logo />
@@ -32,6 +36,7 @@ function App() {
         items={items}
         handleDelateItem={handleDelateItem}
         handleTogglePacked={handleTogglePacked}
+        handleClearList={handleClearList}
       />
       <Stats
         allItemsCount={allItemsCount}
@@ -90,7 +95,12 @@ function Form({ handleAddItem }) {
     </form>
   );
 }
-function PackingList({ items, handleDelateItem, handleTogglePacked }) {
+function PackingList({
+  items,
+  handleDelateItem,
+  handleTogglePacked,
+  handleClearList,
+}) {
   const [sortBy, setSortBy] = useState("input");
 
   let sortedItems;
@@ -132,7 +142,11 @@ function PackingList({ items, handleDelateItem, handleTogglePacked }) {
           );
         })}
       </ul>
-      <SortingActions sortBy={sortBy} handleSorting={handleSorting} />
+      <SortingActions
+        sortBy={sortBy}
+        handleSorting={handleSorting}
+        handleClearList={handleClearList}
+      />
     </div>
   );
 }
@@ -163,20 +177,27 @@ function ListElement({
   );
 }
 
-function SortingActions({ sortBy, handleSorting }) {
+function SortingActions({ sortBy, handleSorting, handleClearList }) {
   return (
-    <select
-      value={sortBy}
-      onChange={(e) => {
-        handleSorting(e.target.value);
-      }}
-    >
-      <option value={"input"}>Sort by input</option>
-      <option value={"description"}>Sort by description</option>
-      <option value={"packed"}>Sort by packed status</option>
-      <option value={"quantity"}>Sort by quantity</option>
-    </select>
+    <div className="actions">
+      <select
+        value={sortBy}
+        onChange={(e) => {
+          handleSorting(e.target.value);
+        }}
+      >
+        <option value={"input"}>Sort by input</option>
+        <option value={"description"}>Sort by description</option>
+        <option value={"packed"}>Sort by packed status</option>
+        <option value={"quantity"}>Sort by quantity</option>
+      </select>
+      <ClearList handleClearList={handleClearList} />
+    </div>
   );
+}
+
+function ClearList({ handleClearList }) {
+  return <button onClick={handleClearList}>Clear list</button>;
 }
 
 function Stats({ allItemsCount, packedItemsCount }) {
