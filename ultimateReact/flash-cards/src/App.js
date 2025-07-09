@@ -47,18 +47,7 @@ function FlashCards() {
   const [activeElement, setActiveElement] = useState(null);
 
   return (
-    <div
-      className="flashcards"
-      onClick={(e) => {
-        console.log(e.target.id);
-        if (activeElement === Number(e.target.id)) {
-          console.log("again");
-          setActiveElement(null);
-        } else {
-          setActiveElement(Number(e.target.id));
-        }
-      }}
-    >
+    <div className="flashcards">
       {questions.map(({ id, question, answer }) => {
         return (
           <FlashCard
@@ -67,6 +56,7 @@ function FlashCards() {
             answer={answer}
             index={id}
             activeElement={activeElement}
+            setActiveElement={setActiveElement}
           />
         );
       })}
@@ -74,11 +64,26 @@ function FlashCards() {
   );
 }
 
-function FlashCard({ question, answer, activeElement, index }) {
+function FlashCard({
+  question,
+  answer,
+  activeElement,
+  index,
+  setActiveElement,
+}) {
   const isActive = index === activeElement;
 
   return (
-    <div className={isActive ? "selected" : ""} id={index}>
+    <div
+      className={isActive ? "selected" : ""}
+      onClick={() => {
+        if (activeElement === index) {
+          setActiveElement(null);
+        } else {
+          setActiveElement(index);
+        }
+      }}
+    >
       {isActive ? answer : question}
     </div>
   );
