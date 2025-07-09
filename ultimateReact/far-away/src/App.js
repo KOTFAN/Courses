@@ -7,11 +7,27 @@ function App() {
   function handleAddItem(item) {
     setItems([...items, item]);
   }
+
+  function handleDelateItem(id) {
+    setItems(items.filter((item) => item.id !== id));
+  }
+
+  function togglePacked(id) {
+    setItems(
+      items.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : { ...item }
+      )
+    );
+  }
   return (
     <div className="app">
       <Logo />
       <Form handleAddItem={handleAddItem} />
-      <PackingList items={items} />
+      <PackingList
+        items={items}
+        handleDelateItem={handleDelateItem}
+        togglePacked={togglePacked}
+      />
       <Stats />
     </div>
   );
@@ -27,7 +43,7 @@ function Form({ handleAddItem }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const item = { description, quantity, pasked: false, id: Date.now() };
+    const item = { description, quantity, packed: false, id: Date.now() };
 
     handleAddItem(item);
 
@@ -66,7 +82,7 @@ function Form({ handleAddItem }) {
     </form>
   );
 }
-function PackingList({ items }) {
+function PackingList({ items, handleDelateItem, togglePacked }) {
   return (
     <div className="list">
       <ul>
@@ -77,6 +93,9 @@ function PackingList({ items }) {
               quantity={quantity}
               packed={packed}
               key={id}
+              handleDelateItem={handleDelateItem}
+              id={id}
+              togglePacked={togglePacked}
             />
           );
         })}
@@ -85,13 +104,28 @@ function PackingList({ items }) {
   );
 }
 
-function ListElement({ description, quantity, packed }) {
+function ListElement({
+  description,
+  quantity,
+  packed,
+  handleDelateItem,
+  id,
+  togglePacked,
+}) {
   return (
     <li>
+      <input
+        type="checkbox"
+        value={packed}
+        onChange={() => {
+          console.log(id);
+          togglePacked(id);
+        }}
+      />
       <span style={packed ? { textDecoration: "line-through" } : {}}>
         {quantity} {description}
       </span>
-      <button>❌</button>
+      <button onClick={() => handleDelateItem(id)}>❌</button>
     </li>
   );
 }
