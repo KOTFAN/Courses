@@ -139,6 +139,14 @@ function ListElement({
 }
 
 function Stats({ allItemsCount, packedItemsCount }) {
+  if (allItemsCount === 0) {
+    return (
+      <footer className="stats">
+        <em>Start adding some items to your packing list</em>
+      </footer>
+    );
+  }
+
   const packedProcent =
     allItemsCount === 0
       ? 0
