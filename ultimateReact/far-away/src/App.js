@@ -12,7 +12,7 @@ function App() {
     setItems(items.filter((item) => item.id !== id));
   }
 
-  function togglePacked(id) {
+  function handleTogglePacked(id) {
     setItems(
       items.map((item) =>
         item.id === id ? { ...item, packed: !item.packed } : { ...item }
@@ -26,7 +26,7 @@ function App() {
       <PackingList
         items={items}
         handleDelateItem={handleDelateItem}
-        togglePacked={togglePacked}
+        handleTogglePacked={handleTogglePacked}
       />
       <Stats />
     </div>
@@ -82,7 +82,7 @@ function Form({ handleAddItem }) {
     </form>
   );
 }
-function PackingList({ items, handleDelateItem, togglePacked }) {
+function PackingList({ items, handleDelateItem, handleTogglePacked }) {
   return (
     <div className="list">
       <ul>
@@ -95,7 +95,7 @@ function PackingList({ items, handleDelateItem, togglePacked }) {
               key={id}
               handleDelateItem={handleDelateItem}
               id={id}
-              togglePacked={togglePacked}
+              handleTogglePacked={handleTogglePacked}
             />
           );
         })}
@@ -110,7 +110,7 @@ function ListElement({
   packed,
   handleDelateItem,
   id,
-  togglePacked,
+  handleTogglePacked,
 }) {
   return (
     <li>
@@ -119,7 +119,7 @@ function ListElement({
         value={packed}
         onChange={() => {
           console.log(id);
-          togglePacked(id);
+          handleTogglePacked(id);
         }}
       />
       <span style={packed ? { textDecoration: "line-through" } : {}}>
