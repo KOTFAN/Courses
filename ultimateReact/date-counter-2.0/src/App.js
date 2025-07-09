@@ -30,7 +30,6 @@ function App() {
             setStepsCount(Number(e.target.value));
           }}
         />
-        {/* <p>Count: {stepsCount}</p> */}
         <button
           onClick={() => setStepsCount((currenCount) => currenCount + stepSize)}
         >
@@ -38,6 +37,8 @@ function App() {
         </button>
       </div>
       <ShowDate stepsCount={stepsCount} />
+
+      {stepsCount === 0 ? "" : <ResetButton setStepsCount={setStepsCount} />}
     </div>
   );
 }
@@ -67,6 +68,14 @@ function ShowDate({ stepsCount }) {
       </p>
     );
   }
+}
+
+function ResetButton({ setStepsCount }) {
+  return (
+    <button onClick={() => setStepsCount(0)} className="reset">
+      Reset
+    </button>
+  );
 }
 
 export default App;

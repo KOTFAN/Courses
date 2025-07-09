@@ -52,3 +52,7 @@
 .counter button {
   height: 20px;
 }
+
+.reset {
+  text-align: center;
+}
