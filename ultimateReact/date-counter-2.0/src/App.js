@@ -8,19 +8,14 @@ function App() {
   return (
     <div className="App">
       <div className="counter">
-        <button
-          onClick={() => {
-            if (stepSize > 1) {
-              setStepSize((currentSize) => currentSize - 1);
-            }
-          }}
-        >
-          -
-        </button>
+        <input
+          type="range"
+          min={1}
+          max={10}
+          value={stepSize}
+          onChange={(e) => setStepSize(Number(e.target.value))}
+        />
         <p>Step: {stepSize}</p>
-        <button onClick={() => setStepSize((currentSize) => currentSize + 1)}>
-          +
-        </button>
       </div>
       <div className="counter">
         <button
