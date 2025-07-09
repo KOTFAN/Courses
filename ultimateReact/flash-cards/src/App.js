@@ -77,11 +77,7 @@ function FlashCard({
     <div
       className={isActive ? "selected" : ""}
       onClick={() => {
-        if (activeElement === index) {
-          setActiveElement(null);
-        } else {
-          setActiveElement(index);
-        }
+        setActiveElement(isActive ? null : index);
       }}
     >
       {isActive ? answer : question}
