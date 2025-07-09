@@ -91,10 +91,34 @@ function Form({ handleAddItem }) {
   );
 }
 function PackingList({ items, handleDelateItem, handleTogglePacked }) {
+  const [sortBy, setSortBy] = useState("input");
+
+  let sortedItems;
+  function handleSorting(method) {
+    setSortBy(method);
+  }
+
+  if (sortBy === "input") {
+    sortedItems = items.slice();
+  }
+  if (sortBy === "description") {
+    sortedItems = items
+      .slice()
+      .sort((a, b) => a.description.localeCompare(b.description));
+  }
+  if (sortBy === "packed") {
+    sortedItems = items
+      .slice()
+      .sort((a, b) => Number(a.packed) - Number(b.packed));
+  }
+  if (sortBy === "quantity") {
+    sortedItems = items.slice().sort((a, b) => b.quantity - a.quantity);
+  }
+
   return (
     <div className="list">
       <ul>
-        {items.map(({ description, quantity, packed, id }) => {
+        {sortedItems.map(({ description, quantity, packed, id }) => {
           return (
             <ListElement
               description={description}
@@ -108,6 +132,7 @@ function PackingList({ items, handleDelateItem, handleTogglePacked }) {
           );
         })}
       </ul>
+      <SortingActions sortBy={sortBy} handleSorting={handleSorting} />
     </div>
   );
 }
@@ -135,6 +160,22 @@ function ListElement({
       </span>
       <button onClick={() => handleDelateItem(id)}>❌</button>
     </li>
+  );
+}
+
+function SortingActions({ sortBy, handleSorting }) {
+  return (
+    <select
+      value={sortBy}
+      onChange={(e) => {
+        handleSorting(e.target.value);
+      }}
+    >
+      <option value={"input"}>Sort by input</option>
+      <option value={"description"}>Sort by description</option>
+      <option value={"packed"}>Sort by packed status</option>
+      <option value={"quantity"}>Sort by quantity</option>
+    </select>
   );
 }
 
