@@ -23,7 +23,14 @@ function App() {
         >
           -
         </button>
-        <p>Count: {stepsCount}</p>
+        <input
+          value={stepsCount}
+          type="number"
+          onChange={(e) => {
+            setStepsCount(Number(e.target.value));
+          }}
+        />
+        {/* <p>Count: {stepsCount}</p> */}
         <button
           onClick={() => setStepsCount((currenCount) => currenCount + stepSize)}
         >
