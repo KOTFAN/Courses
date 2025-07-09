@@ -3,6 +3,11 @@ import "./App.css";
 
 function App() {
   const [items, setItems] = useState([]);
+  const allItemsCount = items.length;
+  const packedItemsCount = items.reduce(
+    (a, { packed }) => (packed ? a + 1 : a),
+    0
+  );
 
   function handleAddItem(item) {
     setItems([...items, item]);
@@ -28,7 +33,10 @@ function App() {
         handleDelateItem={handleDelateItem}
         handleTogglePacked={handleTogglePacked}
       />
-      <Stats />
+      <Stats
+        allItemsCount={allItemsCount}
+        packedItemsCount={packedItemsCount}
+      />
     </div>
   );
 }
@@ -130,10 +138,17 @@ function ListElement({
   );
 }
 
-function Stats() {
+function Stats({ allItemsCount, packedItemsCount }) {
+  const packedProcent =
+    allItemsCount === 0
+      ? 0
+      : Math.floor((packedItemsCount / allItemsCount) * 100);
   return (
     <footer className="stats">
-      <em>You have N items on your list, and you already packed X(X%)</em>
+      <em>
+        You have {allItemsCount} items on your list, and you already packed{" "}
+        {packedItemsCount}({packedProcent}%)
+      </em>
     </footer>
   );
 }
