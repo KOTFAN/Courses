@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import BillSize from "./BillSize";
 import ResetButton from "./ResetButton";
@@ -5,9 +6,10 @@ import ServiceImpression from "./ServiceImpression";
 import YouWillPay from "./YouWillPay";
 
 function App() {
+  const [bill, setBill] = useState(0);
   return (
     <div className="App" style={{ fontFamily: "cursive" }}>
-      <BillSize />
+      <BillSize bill={bill} setBill={setBill} />
       <ServiceImpression>
         <p>How did you like the service?</p>
       </ServiceImpression>

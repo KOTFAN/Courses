@@ -1,7 +1,13 @@
-export default function BillSize() {
+export default function BillSize({ bill, setBill }) {
   return (
     <div>
-      How much was the bill? <input value={90} />
+      How much was the bill?{" "}
+      <input
+        type="number"
+        value={bill}
+        onChange={(e) => setBill(Number(e.target.value))}
+        min={0}
+      />
     </div>
   );
 }
