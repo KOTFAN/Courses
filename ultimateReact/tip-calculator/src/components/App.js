@@ -11,6 +11,12 @@ function App() {
   const [friendTip, setFriendTip] = useState(0);
 
   const averageTip = ((myTip + friendTip) / 2 / 100) * bill; //in $
+
+  function handleReset() {
+    setBill(0);
+    setMyTip(0);
+    setFriendTip(0);
+  }
   return (
     <div className="App" style={{ fontFamily: "cursive" }}>
       <BillSize bill={bill} setBill={setBill} />
@@ -21,7 +27,7 @@ function App() {
         <p>How did your friend like the service?</p>
       </ServiceImpression>
       <YouWillPay bill={bill} tip={averageTip} />
-      <ResetButton />
+      <ResetButton onClick={handleReset} />
     </div>
   );
 }
