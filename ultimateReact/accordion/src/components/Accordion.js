@@ -1,6 +1,16 @@
 import AccordionItem from "./AccordionItem";
+import { useState } from "react";
 
 function Accordion() {
+  const [openItem, setOpenItem] = useState(null);
+
+  function handleOpenClose(number) {
+    if (openItem === number) {
+      setOpenItem(null);
+    } else {
+      setOpenItem(number);
+    }
+  }
   const faqs = [
     {
       title: "Where are these chairs assembled?",
@@ -23,6 +33,8 @@ function Accordion() {
           text={text}
           number={index + 1}
           key={index}
+          handleOpenClose={handleOpenClose}
+          openItem={openItem}
         />
       ))}
     </div>
