@@ -7,13 +7,15 @@ import YouWillPay from "./YouWillPay";
 
 function App() {
   const [bill, setBill] = useState(0);
+  const [myTip, setMyTip] = useState(0);
+  const [friendTip, setFriendTip] = useState(0);
   return (
     <div className="App" style={{ fontFamily: "cursive" }}>
       <BillSize bill={bill} setBill={setBill} />
-      <ServiceImpression>
+      <ServiceImpression setTip={setMyTip} tip={myTip}>
         <p>How did you like the service?</p>
       </ServiceImpression>
-      <ServiceImpression>
+      <ServiceImpression setTip={setFriendTip} tip={friendTip}>
         <p>How did your friend like the service?</p>
       </ServiceImpression>
       <YouWillPay />
