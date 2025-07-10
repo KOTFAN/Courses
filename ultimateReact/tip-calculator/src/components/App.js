@@ -9,6 +9,8 @@ function App() {
   const [bill, setBill] = useState(0);
   const [myTip, setMyTip] = useState(0);
   const [friendTip, setFriendTip] = useState(0);
+
+  const averageTip = ((myTip + friendTip) / 2 / 100) * bill; //in $
   return (
     <div className="App" style={{ fontFamily: "cursive" }}>
       <BillSize bill={bill} setBill={setBill} />
@@ -18,7 +20,7 @@ function App() {
       <ServiceImpression setTip={setFriendTip} tip={friendTip}>
         <p>How did your friend like the service?</p>
       </ServiceImpression>
-      <YouWillPay />
+      <YouWillPay bill={bill} tip={averageTip} />
       <ResetButton />
     </div>
   );
