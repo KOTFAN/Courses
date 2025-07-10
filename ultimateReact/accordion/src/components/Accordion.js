@@ -30,13 +30,30 @@ function Accordion() {
       {faqs.map(({ title, text }, index) => (
         <AccordionItem
           title={title}
-          text={text}
           number={index + 1}
           key={index}
           handleOpenClose={handleOpenClose}
           openItem={openItem}
-        />
+        >
+          {text}
+        </AccordionItem>
       ))}
+      <AccordionItem
+        title={"Magic title"}
+        number={23}
+        key={22}
+        handleOpenClose={handleOpenClose}
+        openItem={openItem}
+      >
+        {
+          <ul>
+            <li>Lorem</li>
+            <li>Lorem</li>
+            <li>Lorem</li>
+            <li>Lorem</li>
+          </ul>
+        }
+      </AccordionItem>
     </div>
   );
 }

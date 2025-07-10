@@ -1,9 +1,9 @@
 export default function AccordionItem({
   title,
-  text,
   number,
   handleOpenClose,
   openItem,
+  children,
 }) {
   const isOpen = openItem === number;
   return (
@@ -14,7 +14,7 @@ export default function AccordionItem({
       <span className="number"> {number > 9 ? number : "0" + number}</span>
       <h2 className="title">{title}</h2>
       <span className="icon">{isOpen ? "-" : "+"}</span>
-      {isOpen ? <div className="content-box">{text}</div> : null}
+      {isOpen ? <div className="content-box">{children}</div> : null}
     </div>
   );
 }
