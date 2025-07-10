@@ -26,8 +26,12 @@ function App() {
       <ServiceImpression setTip={setFriendTip} tip={friendTip}>
         <p>How did your friend like the service?</p>
       </ServiceImpression>
-      <YouWillPay bill={bill} tip={averageTip} />
-      <ResetButton onClick={handleReset} />
+      {bill !== 0 && (
+        <>
+          <YouWillPay bill={bill} tip={averageTip} />
+          <ResetButton onClick={handleReset} />
+        </>
+      )}
     </div>
   );
 }
