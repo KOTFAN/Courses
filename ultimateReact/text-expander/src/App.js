@@ -49,9 +49,7 @@ function TextExpander({
 
   return (
     <div className={className}>
-      {isOpen
-        ? text.filter((w, i) => i < shownWordsNumber).join(" ") + "..."
-        : children}
+      {isOpen ? text.slice(0, shownWordsNumber).join(" ") + "..." : children}
       {text.length >= shownWordsNumber && (
         <ShowButton
           expandButtonText={expandButtonText}
