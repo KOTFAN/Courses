@@ -4,7 +4,7 @@ import "./App.css";
 export default function App() {
   return (
     <div>
-      <TextExpander shownWordsNumber={1}>
+      <TextExpander shownWordsNumber={1000}>
         Space travel is the ultimate adventure! Imagine soaring past the stars
         and exploring new worlds. It's the stuff of dreams and science fiction,
         but believe it or not, space travel is a real thing. Humans and robots
@@ -44,16 +44,41 @@ function TextExpander({
   collapseButtonText,
   buttonColor,
 }) {
-  const [isOpen, setIsOpen] = useState(open);
-
   const text = children.split(" ");
-  console.log(text);
+  const [isOpen, setIsOpen] = useState(text.length >= shownWordsNumber && open);
 
   return (
     <div className={className}>
-      {shownWordsNumber < text.length
+      {isOpen
         ? text.filter((w, i) => i < shownWordsNumber).join(" ") + "..."
         : children}
+      {text.length >= shownWordsNumber && (
+        <ShowButton
+          expandButtonText={expandButtonText}
+          collapseButtonText={collapseButtonText}
+          isOpen={isOpen}
+          buttonColor={buttonColor}
+          setIsOpen={setIsOpen}
+        />
+      )}
     </div>
+  );
+}
+
+function ShowButton({
+  expandButtonText = "Show more",
+  collapseButtonText = "Show less",
+  buttonColor = "blue",
+  isOpen,
+  setIsOpen,
+}) {
+  return (
+    <span
+      style={{ color: buttonColor }}
+      role="button"
+      onClick={() => setIsOpen((c) => !c)}
+    >
+      {isOpen ? expandButtonText : collapseButtonText}
+    </span>
   );
 }
