@@ -19,6 +19,7 @@ const content = [
 ];
 
 export default function App() {
+  console.log("app render");
   return (
     <div>
       <Tabbed content={content} />
@@ -28,6 +29,8 @@ export default function App() {
 
 function Tabbed({ content }) {
   const [activeTab, setActiveTab] = useState(0);
+
+  console.log("Tabbed rerenders");
 
   return (
     <div>
@@ -65,8 +68,13 @@ function TabContent({ item }) {
   const [showDetails, setShowDetails] = useState(true);
   const [likes, setLikes] = useState(0);
 
+  console.log("TabContent rerenders");
+
   function handleInc() {
     setLikes(likes + 1);
+  }
+  function handleTripleInc() {
+    setLikes(likes + 3);
   }
 
   return (
@@ -82,7 +90,7 @@ function TabContent({ item }) {
         <div className="hearts-counter">
           <span>{likes} ❤️</span>
           <button onClick={handleInc}>+</button>
-          <button>+++</button>
+          <button onClick={handleTripleInc}>+++</button>
         </div>
       </div>
 
