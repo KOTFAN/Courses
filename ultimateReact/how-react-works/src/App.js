@@ -77,6 +77,11 @@ function TabContent({ item }) {
     setLikes(likes + 3);
   }
 
+  function handleReset() {
+    setLikes(0);
+    setShowDetails(true);
+  }
+
   return (
     <div className="tab-content">
       <h4>{item.summary}</h4>
@@ -95,7 +100,7 @@ function TabContent({ item }) {
       </div>
 
       <div className="tab-undo">
-        <button>Undo</button>
+        <button onClick={handleReset}>Undo</button>
         <button>Undo in 2s</button>
       </div>
     </div>
