@@ -1,4 +1,3 @@
-
 //Challenge #1
 
 // let massMark = 78
@@ -37,10 +36,7 @@
 // const bill = 275;
 // const tip = 50 <= bill && bill <= 300 ? bill * 0.15 : bill * 0.2
 
-
 // console.log(`The bill was ${bill}, the tip was ${tip}, and the total value ${bill + tip}`)
-
-
 
 //Challenge #5
 // const calcAverage = (s1, s2, s3) => (s1 + s2 + s3) / 3
@@ -59,8 +55,6 @@
 //    }
 // }
 
-
-
 //Challenge #6
 
 // let bills = [125, 555, 44];
@@ -73,8 +67,6 @@
 // const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]]
 // console.log(totals)
 // console.log(bills)
-
-
 
 //Challenge #7
 // const mark = {
@@ -108,14 +100,11 @@
 // let tips = []
 // let totals = []
 
-
 // for (let i = 0; i < bills.length; i++) {
 //    tips.push(calcTip(bills[i]))
 //    totals.push(bills[i] + tips[i])
 
 // }
-
-
 
 //Challenge #9
 
@@ -136,7 +125,6 @@ TEST DATA FOR 6: Use players 'Davies', 'Muller', 'Lewandowski' and 'Kimmich'. Th
 
 GOOD LUCK 😀
 */
-
 
 // const game = {
 //    team1: 'Bayern Munich',
@@ -179,10 +167,8 @@ GOOD LUCK 😀
 //    },
 // };
 
-
 // //is better
 // const [players1, players2] = game.players
-
 
 // const [gk1, ...fieldPlayers1] = players1
 // const [gk2, ...fieldPlayers2] = players2
@@ -193,7 +179,6 @@ GOOD LUCK 😀
 // const players2Final = [...players2]
 
 // const [team1, draw, team2] = [...Object.values(game.odds)]
-
 
 // function printGoals() {
 //    const goalsMade = arguments.length
@@ -220,15 +205,12 @@ GOOD LUCK 😀
 //    [team2]: [game.team2],
 // }
 
-
 // console.log(`Team ${coefs[String(Math.min(...(Object.keys(coefs).map((s) => parseFloat(s)))))]} has the biggest chanses to win this game`)
 
 // printGoals()
 // console.log(players1, players2)
 
-
 //Challenge #10
-
 
 /*
 Let's continue with our football betting app!
@@ -292,12 +274,10 @@ GOOD LUCK 😀
 //    },
 // };
 
-
 // function printGoals(...players) {
 //    const goalsMade = players.length
 
 //    const PlayersGoalsNums = {}
-
 
 //    let goal = 0
 //    for (let player of players) {
@@ -320,7 +300,6 @@ GOOD LUCK 😀
 
 // console.log("Average coef is " + (Object.values(game.odds).reduce((a, v) => a + Number(v), 0) / Object.values(game.odds).length).toFixed(2));
 
-
 // const scorers = printGoals(...game.scored)
 
 // const { team1, x: draw, team2 } = { ...game.odds }
@@ -334,7 +313,6 @@ GOOD LUCK 😀
 // for (let teamOdd of Object.entries(gameOdds)) {
 //    console.log(`Odd on ${teamOdd[0]}: ${teamOdd[1]}`)
 // }
-
 
 //Challenge #11
 
@@ -384,15 +362,11 @@ GOOD LUCK 😀
 
 // for (const [event, count] of Object.entries(eventCounts)) {
 
-
 //    console.log(`An ${event} happened, on average, every ${Math.floor(90 / count)} minutes`)
 // }
 
-
 // //4
 // gameEvents.forEach((v, k) => console.log(`${k < 45 ? '[FIRST HALF]' : '[SECOND HALF]'} ${k}:${v}`))
-
-
 
 // Challenge #12
 
@@ -425,19 +399,14 @@ Afterwards, test with your own test data!
 GOOD LUCK 😀
 */
 
-
-
 // document.body.append(document.createElement('textarea'));
 // document.body.append(document.createElement('button'));
 
 // const textarea = document.querySelector('textarea')
 
-
-
 // document.querySelector('button').addEventListener('click', () => {
 //    const inputData = textarea.value.split('\n')
 //    const res = []
-
 
 //    for (const line of inputData) {
 //       const lineData = line.toLowerCase().trim().split('_')
@@ -460,9 +429,7 @@ GOOD LUCK 😀
 //    console.log(res.join('\n'))
 // })
 
-
 // Challenge #13
-
 
 /*
 Let's build a simple poll app!
@@ -527,11 +494,7 @@ GOOD LUCK 😀
 
 // poll.displayResults.call({ answers: someData }, 'string')
 
-
-
 // Challenge #14
-
-
 
 /*
 This is more of a thinking challenge than a coding challenge 🤓
@@ -554,8 +517,6 @@ GOOD LUCK 😀
 //    })
 // })()
 
-
-
 //my bind
 // const p1 = { name: 'Alex', age: 22, job: 'Frontend' }
 // const p2 = { name: 'Leorio', age: 20, job: 'Medic' }
@@ -574,7 +535,6 @@ GOOD LUCK 😀
 // let logLeorio = bind(p2, logP)
 
 // logLeorio()
-
 
 // Coding Challenge #15
 
@@ -618,8 +578,6 @@ GOOD LUCK 😀
 
 // checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3])
 
-
-
 // Coding Challenge #16
 
 /*
@@ -652,14 +610,12 @@ GOOD LUCK 😀
 //       average = adultDogsAges.reduce((sum, age) => sum + age) / adultDogsAges.length
 //    }
 
-
 //    return average
 
 // }
 
 // calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3])
 // calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4])
-
 
 // Coding Challenge #17
 /*
@@ -675,10 +631,8 @@ GOOD LUCK 😀
 //    .filter((age) => age >= 18)
 //    .reduce((sum, age, i, arr) => sum + age / arr.length, 0)
 
-
 // calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3])
 // calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4])
-
 
 // Coding Challenge #18
 
@@ -737,7 +691,6 @@ TEST DATA:
 //    },
 // ];
 
-
 // // 1
 // const huskyWeight = breeds.find(({ breed }) => breed === 'Husky')?.averageWeight
 // console.log(huskyWeight)
@@ -766,7 +719,6 @@ TEST DATA:
 // const biggestFetcher = dogsThatLikesFetching.reduce((acc, v) => v.averageWeight > acc.averageWeight ? v : acc, dogsThatLikesFetching[0]).breed
 // console.log(biggestFetcher)
 
-
 // Coding Challenge #19
 
 /*
@@ -791,7 +743,6 @@ YOUR TASKS:
 HINT 1: Use many different tools to solve these challenges, you can use the summary lecture to choose between them 😉
 HINT 2: Being within a range 10% above and below the recommended portion means: current > (recommended * 0.90) && current < (recommended * 1.10). Basically, the current portion should be between 90% and 110% of the recommended portion.
 */
-
 
 // const dogs = [
 //    { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
@@ -869,7 +820,6 @@ HINT 2: Being within a range 10% above and below the recommended portion means: 
 // console.log(dogs)
 // console.log(sortedDogs)
 
-
 // Coding Challenge #20
 
 /*
@@ -899,7 +849,6 @@ GOOD LUCK 😀
 //    console.log(this.speed)
 // }
 
-
 // const BMW = new Car('BMW', 120)
 // const Mercedes = new Car('Mercedes', 95)
 
@@ -908,8 +857,6 @@ GOOD LUCK 😀
 
 // Mercedes.brake()
 // Mercedes.accelerate()
-
-
 
 ///////////////////////////////////////
 // Coding Challenge #21
@@ -924,7 +871,6 @@ DATA CAR 1: 'Ford' going at 120 km/h
 
 GOOD LUCK 😀
 */
-
 
 // class Car {
 //    constructor(name, speed) {
@@ -959,8 +905,6 @@ GOOD LUCK 😀
 
 // console.log(ford)
 
-
-
 // Coding Challenge #22
 
 /*
@@ -973,7 +917,6 @@ DATA CAR 1: 'Tesla' going at 120 km/h, with a charge of 23%
 
 GOOD LUCK 😀
 */
-
 
 // const Car = function (make, speed) {
 //    this.make = make;
@@ -1013,7 +956,6 @@ GOOD LUCK 😀
 // const tesla = new ElectricCar('Tesla', 120, 50)
 // console.log(tesla)
 
-
 ///////////////////////////////////////
 // Coding Challenge #23
 
@@ -1027,44 +969,75 @@ DATA CAR 1: 'Rivian' going at 120 km/h, with a charge of 23%
 GOOD LUCK 😀
 */
 
+// class CarCl {
+//    constructor(make, speed) {
+//       this.make = make;
+//       this.speed = speed;
+//    }
+//    accelerate() {
+//       this.speed += 10
+//       console.log(this.speed)
+//    }
+//    brake() {
+//       this.speed -= 5
+//       console.log(this.speed)
+//    }
+// }
 
-class CarCl {
-   constructor(make, speed) {
-      this.make = make;
-      this.speed = speed;
-   }
-   accelerate() {
-      this.speed += 10
-      console.log(this.speed)
-   }
-   brake() {
-      this.speed -= 5
-      console.log(this.speed)
-   }
-}
+// class EVCl extends CarCl {
+//    #charge;
+//    constructor(make, speed, charge) {
+//       super(make, speed)
+//       this.#charge = charge;
+//    }
+//    chargeBattery(chargeTo) {
+//       this.#charge = chargeTo;
+//       console.log(this.make + ' was charged to ' + this.#charge + '%')
+//       return this;
+//    }
+//    accelerate() {
+//       this.#charge -= 1;
+//       this.speed += 20;
+//       console.log(`${this.make} going at ${this.speed}km/h with charge of ${this.#charge}`)
+//       return this;
+//    }
+//    brake() {
+//       this.speed -= 10;
+//       console.log(`${this.make} going at ${this.speed}km/h with charge of ${this.#charge}`)
+//       return this;
+//    }
+// }
 
-class EVCl extends CarCl {
-   #charge;
-   constructor(make, speed, charge) {
-      super(make, speed)
-      this.#charge = charge;
-   }
-   chargeBattery(chargeTo) {
-      this.#charge = chargeTo;
-      console.log(this.make + ' was charged to ' + this.#charge + '%')
-      return this;
-   }
-   accelerate() {
-      this.#charge -= 1;
-      this.speed += 20;
-      console.log(`${this.make} going at ${this.speed}km/h with charge of ${this.#charge}`)
-      return this;
-   }
-   brake() {
-      this.speed -= 10;
-      console.log(`${this.make} going at ${this.speed}km/h with charge of ${this.#charge}`)
-      return this;
-   }
-}
+// const Rivian = new EVCl('Rivian', 120, 23)
 
-const Rivian = new EVCl('Rivian', 120, 23)
+//
+
+// Coding Challenge #24
+
+// const request = new XMLHttpRequest();
+// request.open("GET", "https://countries-api-836d.onrender.com/countries/");
+// request.send();
+// request.addEventListener("load", (data) => {
+//   console.log(data);
+// });
+
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open(
+  "GET",
+  "https://travel-info-api.p.rapidapi.com/find-embassy?source=turkey&destination=usa"
+);
+xhr.setRequestHeader(
+  "x-rapidapi-key",
+  "f4642f5f55msh335aede259b9186p1ddbacjsn53efd60b134b"
+);
+xhr.setRequestHeader("x-rapidapi-host", "travel-info-api.p.rapidapi.com");
+
+xhr.send();
