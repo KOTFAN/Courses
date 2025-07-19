@@ -1021,23 +1021,78 @@ GOOD LUCK 😀
 //   console.log(data);
 // });
 
-const xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
+// const xhr = new XMLHttpRequest();
+// xhr.withCredentials = true;
 
-xhr.addEventListener("readystatechange", function () {
-  if (this.readyState === this.DONE) {
-    console.log(this.responseText);
-  }
-});
+// xhr.addEventListener("readystatechange", function () {
+//   if (this.readyState === this.DONE) {
+//     console.log(this.responseText);
+//   }
+// });
 
-xhr.open(
-  "GET",
-  "https://travel-info-api.p.rapidapi.com/find-embassy?source=turkey&destination=usa"
-);
-xhr.setRequestHeader(
-  "x-rapidapi-key",
-  "f4642f5f55msh335aede259b9186p1ddbacjsn53efd60b134b"
-);
-xhr.setRequestHeader("x-rapidapi-host", "travel-info-api.p.rapidapi.com");
+// xhr.open(
+//   "GET",
+//   "https://travel-info-api.p.rapidapi.com/find-embassy?source=turkey&destination=usa"
+// );
+// xhr.setRequestHeader(
+//   "x-rapidapi-key",
+//   "f4642f5f55msh335aede259b9186p1ddbacjsn53efd60b134b"
+// );
+// xhr.setRequestHeader("x-rapidapi-host", "travel-info-api.p.rapidapi.com");
 
-xhr.send();
+// xhr.send();
+
+// Coding Challenge #25
+
+/* 
+In this challenge you will build a function 'whereAmI' which renders a country ONLY based on GPS coordinates. For that, you will use a second API to geocode coordinates.
+
+Here are your tasks:
+
+PART 1
+1. Create a function 'whereAmI' which takes as inputs a latitude value (lat) and a longitude value (lng) (these are GPS coordinates, examples are below).
+2. Do 'reverse geocoding' of the provided coordinates. Reverse geocoding means to convert coordinates to a meaningful location, like a city and country name. Use this API to do reverse geocoding: https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}.
+The AJAX call will be done to a URL with this format: https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=52.508&longitude=13.381. Use the fetch API and promises to get the data. Do NOT use the getJSON function we created, that is cheating 😉
+3. Once you have the data, take a look at it in the console to see all the attributes that you recieved about the provided location. Then, using this data, log a messsage like this to the console: 'You are in Berlin, Germany'
+4. Chain a .catch method to the end of the promise chain and log errors to the console
+5. This API allows you to make only 3 requests per second. If you reload fast, you will get this error with code 403. This is an error with the request. Remember, fetch() does NOT reject the promise in this case. So create an error to reject the promise yourself, with a meaningful error message.
+
+PART 2
+6. Now it's time to use the received data to render a country. So take the relevant attribute from the geocoding API result, and plug it into the countries API that we have been using.
+7. Render the country and catch any errors, just like we have done in the last lecture (you can even copy this code, no need to type the same code)
+
+TEST COORDINATES 1: 52.508, 13.381 (Latitude, Longitude)
+TEST COORDINATES 2: 19.037, 72.873
+TEST COORDINATES 2: -33.933, 18.474
+
+GOOD LUCK 😀
+*/
+
+const bnt = document.getElementById("send-request");
+const latInput = document.getElementById("lat");
+const lngInput = document.getElementById("lng");
+
+function whereAmI(lat = 0, lng = 0) {
+  fetch(
+    `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`
+  )
+    .then((data) => {
+      if (!data.ok) {
+        throw new Error("failed to fetch data");
+      }
+      return data.json();
+    })
+    .then((location) => {
+      if (location.countryName) {
+        console.log(`You are in ${location.countryName}`);
+      } else {
+        console.log("invalid input");
+      }
+    })
+    .catch((err) => console.log(err));
+}
+// whereAmI(47.508, 30.381);
+
+bnt.onclick = () => {
+  whereAmI(Number(latInput.value), Number(lngInput.value));
+};
