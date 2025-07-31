@@ -6,3 +6,14 @@ a.b = 100;
 console.log(a, b);
 
 console.log("23456");
+
+const anime = "One Panch Man";
+fetch("https://api.animechan.io/v1/anime/One Piece")
+  .then((res) => {
+    console.log(res);
+    if (res.ok) {
+      return res.json();
+    }
+  })
+  .then((data) => console.log(data.data.summary))
+  .catch((err) => console.error(err));
