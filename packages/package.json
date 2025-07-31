@@ -1,8 +1,9 @@
 {
   "name": "packages",
   "version": "1.0.0",
-  "main": "script.js",
   "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "KOTFAN",
@@ -10,5 +11,8 @@
   "description": "",
   "dependencies": {
     "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "parcel": "^2.15.4"
   }
 }
