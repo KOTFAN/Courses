@@ -1125,6 +1125,69 @@ TEST DATA: Images in the img folder. Test the error handler by passing a wrong i
 GOOD LUCK 😀
 */
 
+// function wait(s) {
+//   //promise will resolve(call cb in then) in s seconds
+//   return new Promise(function (resolve) {
+//     setTimeout(resolve, 1000 * s);
+//   });
+// }
+
+// function createImage(imgPath) {
+//   return new Promise(function (resolve, reject) {
+//     const img = document.createElement("img");
+//     img.src = imgPath;
+
+//     img.addEventListener("load", () => {
+//       document.body.append(img);
+//       resolve(img); //img here is argument for cb in then
+//     });
+
+//     img.addEventListener("error", () => {
+//       reject(new Error(`Failed to load image: ${imgPath}`));
+//     });
+//   });
+// }
+// let currentImage;
+// createImage("./img/img-1.jpg")
+//   .then((imgEl) => {
+//     currentImage = imgEl;
+//     return wait(2); //is new promise
+//   })
+//   .then(() => {
+//     currentImage.style.display = "none";
+//     return createImage("./img/img-2.jpg"); //is new promise
+//   })
+//   .then((imgEl) => {
+//     currentImage = imgEl;
+//     return wait(2); //is new promise
+//   })
+//   .then(() => {
+//     currentImage.style.display = "none";
+//     return createImage("./img/img-3.jpg"); //is new promise
+//   })
+//   .catch((err) => console.log(err));
+
+///////////////////////////////////////
+// Coding Challenge #27
+
+/* 
+PART 1
+Write an async function 'loadNPause' that recreates Coding Challenge #2, this time using async/await (only the part where the promise is consumed). 
+Compare the two versions, think about the big differences, and see which one you like more.
+Don't forget to test the error handler, and to set the network speed to 'Fast 3G' in the dev tools Network tab.
+
+PART 2
+1. Create an async function 'loadAll' that receives an array of image paths 'imgArr';
+2. Use .map to loop over the array, to load all the images with the 'createImage' function (call the resulting array 'imgs')
+3. Check out the 'imgs' array in the console! Is it like you expected?
+4. Use a promise combinator function to actually get the images from the array 😉
+5. Add the 'paralell' class to all the images (it has some CSS styles).
+
+TEST DATA: ['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']. To test, turn off the 'loadNPause' function.
+
+GOOD LUCK 😀
+*/
+//P1
 function wait(s) {
   //promise will resolve(call cb in then) in s seconds
   return new Promise(function (resolve) {
@@ -1133,10 +1196,9 @@ function wait(s) {
 }
 
 function createImage(imgPath) {
+  const img = document.createElement("img");
+  img.src = imgPath;
   return new Promise(function (resolve, reject) {
-    const img = document.createElement("img");
-    img.src = imgPath;
-
     img.addEventListener("load", () => {
       document.body.append(img);
       resolve(img); //img here is argument for cb in then
@@ -1147,22 +1209,40 @@ function createImage(imgPath) {
     });
   });
 }
-let currentImage;
-createImage("./img/img-1.jpg")
-  .then((imgEl) => {
-    currentImage = imgEl;
-    return wait(2); //is new promise
-  })
-  .then(() => {
+
+async function loadNPause() {
+  try {
+    let currentImage = await createImage("./img/img-1.jpg");
+    await wait(2);
     currentImage.style.display = "none";
-    return createImage("./img/img-2.jpg"); //is new promise
-  })
-  .then((imgEl) => {
-    currentImage = imgEl;
-    return wait(2); //is new promise
-  })
-  .then(() => {
+    await wait(2);
+    currentImage = await createImage("./img/img-2.jpg");
+    await wait(2);
     currentImage.style.display = "none";
-    return createImage("./img/img-3.jpg"); //is new promise
-  })
-  .catch((err) => console.log(err));
+    await wait(2);
+
+    currentImage = await createImage("./img/img-3.jpg");
+    await wait(2);
+    currentImage.style.display = "none";
+  } catch (err) {
+    console.log(err);
+  } finally {
+  }
+}
+// loadNPause();
+
+//P2
+async function loadAll(imgArr) {
+  try {
+    const promises = imgArr.map((imgUrl) => createImage(imgUrl));
+    const imgs = await Promise.all(promises);
+    imgs.forEach((img) => img.classList.add("paralell"));
+    console.log(imgs);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    console.log("loaded");
+  }
+}
+
+loadAll(["img/img-1.jpg", "img/img-2.jpg", "img/img-3.jpg"]);
