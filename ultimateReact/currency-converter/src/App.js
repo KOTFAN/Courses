@@ -6,9 +6,11 @@ export default function App() {
   const [firstCurrency, setFirstCurrency] = useState("USD");
   const [secondCurrency, setSecondCurrency] = useState("USD");
   const [convertedValue, setConvertedValue] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function showSwappedValue() {
+      setIsLoading(true);
       try {
         if (firstCurrency === secondCurrency) {
           setConvertedValue(amount);
@@ -22,6 +24,8 @@ export default function App() {
         }
       } catch (err) {
         console.log(err);
+      } finally {
+        setIsLoading(false);
       }
     }
     showSwappedValue();
@@ -32,10 +36,12 @@ export default function App() {
         type="text"
         value={amount}
         onChange={(e) => setAmount(Number(e.target.value))}
+        disabled={isLoading}
       />
       <select
         value={firstCurrency}
         onChange={(e) => setFirstCurrency(e.target.value)}
+        disabled={isLoading}
       >
         <option value="USD">USD</option>
         <option value="EUR">EUR</option>
@@ -45,6 +51,7 @@ export default function App() {
       <select
         value={secondCurrency}
         onChange={(e) => setSecondCurrency(e.target.value)}
+        disabled={isLoading}
       >
         <option value="USD">USD</option>
         <option value="EUR">EUR</option>
@@ -52,7 +59,7 @@ export default function App() {
         <option value="INR">INR</option>
       </select>
       <p>
-        {convertedValue} to {secondCurrency}
+        {convertedValue} {secondCurrency}
       </p>
     </div>
   );
