@@ -6,7 +6,7 @@ export function useGeolocation(cb) {
   const [error, setError] = useState(null);
 
   function getPosition() {
-    cb((count) => count + 1);
+    cb();
 
     if (!navigator.geolocation)
       return setError("Your browser does not support geolocation");

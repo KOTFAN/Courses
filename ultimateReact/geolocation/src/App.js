@@ -3,8 +3,9 @@ import { useGeolocation } from "./hooks/useGeolocation";
 
 export default function App() {
   const [countClicks, setCountClicks] = useState(0);
-  const { position, isLoading, error, getPosition } =
-    useGeolocation(setCountClicks);
+  const { position, isLoading, error, getPosition } = useGeolocation(() =>
+    setCountClicks((c) => c + 1)
+  );
 
   const { lat, lng } = position;
 
