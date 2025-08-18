@@ -15,7 +15,6 @@ function App() {
     ) {
       case "loading":
         return { ...state, status: "loading" };
-
       case "error":
         return { ...state, status: "error" };
       case "ready":
@@ -27,7 +26,16 @@ function App() {
   }
 
   useEffect(() => {
-    dispatch({ type: "ready" });
+    fetch("http://localhost:3004/questions")
+      .then((data) => {
+        return data.json();
+      })
+      .then((questions) => {
+        dispatch({ type: "ready", payload: questions });
+      })
+      .catch((err) => {
+        dispatch({ type: "error" });
+      });
   }, []);
 
   return (
