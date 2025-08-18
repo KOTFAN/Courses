@@ -8,6 +8,7 @@ import Loader from "./Loader";
 function App() {
   const intialState = { questions: [], score: 0, bestScore: 0, answer: null, status: "loading" };
   const [{ questions, score, bestScore, answer, status }, dispatch] = useReducer(reducer, intialState);
+  const questionsNum = questions.length;
 
   function reducer(state, action) {
     switch (
@@ -17,6 +18,8 @@ function App() {
         return { ...state, status: "error" };
       case "ready":
         return { ...state, status: "ready", questions: action.payload };
+      case "start":
+        return { ...state, status: "active" };
 
       default:
         throw new Error("Wrong action🔥");
@@ -44,7 +47,7 @@ function App() {
 
         {status === "loading" && <Loader />}
 
-        {status === "ready" && <StartQuiz />}
+        {status === "ready" && <StartQuiz questionsNum={questionsNum} dispatch={dispatch} />}
       </Main>
     </div>
   );
