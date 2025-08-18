@@ -3,6 +3,7 @@ import Header from "./Header";
 import Main from "./Main";
 import StartQuiz from "./StartQuiz";
 import Error from "./Error";
+import Loader from "./Loader";
 
 function App() {
   const intialState = { questions: [], score: 0, bestScore: 0, answer: null, status: "loading" };
@@ -13,7 +14,10 @@ function App() {
       action.type //'loading', 'ready', 'active', 'finished', 'error'
     ) {
       case "loading":
-        return { ...state };
+        return { ...state, status: "loading" };
+
+      case "error":
+        return { ...state, status: "error" };
       case "ready":
         return { ...state, status: "ready" };
 
@@ -31,6 +35,8 @@ function App() {
       <Header />
       <Main>
         {status === "error" && <Error />}
+
+        {status === "loading" && <Loader />}
 
         {status === "ready" && <StartQuiz />}
       </Main>
