@@ -13,12 +13,10 @@ function App() {
     switch (
       action.type //'loading', 'ready', 'active', 'finished', 'error'
     ) {
-      case "loading":
-        return { ...state, status: "loading" };
       case "error":
         return { ...state, status: "error" };
       case "ready":
-        return { ...state, status: "ready" };
+        return { ...state, status: "ready", questions: action.payload };
 
       default:
         throw new Error("Wrong action🔥");
