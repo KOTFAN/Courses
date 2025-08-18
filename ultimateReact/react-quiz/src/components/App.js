@@ -1,7 +1,8 @@
 import { useEffect, useReducer } from "react";
-import Header from "./components/Header";
-import Main from "./components/Main";
+import Header from "./Header";
+import Main from "./Main";
 import StartQuiz from "./StartQuiz";
+import Error from "./Error";
 
 function App() {
   const intialState = { questions: [], score: 0, bestScore: 0, answer: null, status: "loading" };
@@ -9,7 +10,7 @@ function App() {
 
   function reducer(state, action) {
     switch (
-      action.type //
+      action.type //'loading', 'ready', 'active', 'finished', 'error'
     ) {
       case "loading":
         return { ...state };
@@ -28,7 +29,11 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <Main>{status === "ready" && <StartQuiz />}</Main>
+      <Main>
+        {status === "error" && <Error />}
+
+        {status === "ready" && <StartQuiz />}
+      </Main>
     </div>
   );
 }
